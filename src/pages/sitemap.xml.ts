@@ -8,23 +8,24 @@ const site = "https://gybe.org";
 type SitemapPage = {
   path: string;
   priority: string;
+  changefreq: "daily" | "weekly" | "monthly" | "yearly";
   lastmod?: string;
 };
 
 const staticPages: SitemapPage[] = [
-  { path: "/", priority: "1.0" },
-  { path: "/about", priority: "0.8" },
-  { path: "/disco", priority: "0.9" },
-  { path: "/shows", priority: "0.8", lastmod: shows.lastChecked },
-  { path: "/members", priority: "0.8" },
-  { path: "/crossing-paths", priority: "0.8" },
-  { path: "/contact", priority: "0.5" },
+  { path: "/", priority: "1.0", changefreq: "weekly", lastmod: shows.lastChecked },
+  { path: "/about/", priority: "0.8", changefreq: "monthly", lastmod: shows.lastChecked },
+  { path: "/disco/", priority: "0.9", changefreq: "monthly", lastmod: shows.lastChecked },
+  { path: "/shows/", priority: "0.8", changefreq: "weekly", lastmod: shows.lastChecked },
+  { path: "/members/", priority: "0.8", changefreq: "monthly", lastmod: shows.lastChecked },
+  { path: "/crossing-paths/", priority: "0.8", changefreq: "monthly", lastmod: shows.lastChecked },
+  { path: "/contact/", priority: "0.5", changefreq: "yearly", lastmod: shows.lastChecked },
 ];
 
 const dynamicPages: SitemapPage[] = [
-  ...albums.map((album) => ({ path: `/disco/${album.slug}`, priority: "0.7" })),
-  ...members.map((member) => ({ path: `/members/${member.slug}`, priority: "0.6" })),
-  ...crossingPaths.map((item) => ({ path: `/crossing-paths/${item.slug}`, priority: "0.6" })),
+  ...albums.map((album) => ({ path: `/disco/${album.slug}/`, priority: "0.7", changefreq: "yearly" as const, lastmod: shows.lastChecked })),
+  ...members.map((member) => ({ path: `/members/${member.slug}/`, priority: "0.6", changefreq: "yearly" as const, lastmod: shows.lastChecked })),
+  ...crossingPaths.map((item) => ({ path: `/crossing-paths/${item.slug}/`, priority: "0.6", changefreq: "yearly" as const, lastmod: shows.lastChecked })),
 ];
 
 const pages: SitemapPage[] = [...staticPages, ...dynamicPages];
@@ -48,6 +49,7 @@ ${pages
 
     return `  <url>
     <loc>${escapeXml(loc)}</loc>${lastmod}
+    <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`;
   })

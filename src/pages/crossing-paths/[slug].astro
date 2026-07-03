@@ -10,18 +10,29 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props;
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  name: item.title,
-  url: `https://gybe.org/crossing-paths/${item.slug}`,
-  description: item.summary,
-  subjectOf: {
-    "@type": "WebPage",
-    url: `https://gybe.org/crossing-paths/${item.slug}`,
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    name: item.title,
+    url: `https://gybe.org/crossing-paths/${item.slug}/`,
+    description: item.summary,
+    subjectOf: {
+      "@type": "WebPage",
+      url: `https://gybe.org/crossing-paths/${item.slug}/`,
+    },
+    sameAs: item.links.map((link) => link.url),
   },
-  sameAs: item.links.map((link) => link.url),
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://gybe.org/" },
+      { "@type": "ListItem", position: 2, name: "Crossing paths", item: "https://gybe.org/crossing-paths/" },
+      { "@type": "ListItem", position: 3, name: item.title, item: `https://gybe.org/crossing-paths/${item.slug}/` },
+    ],
+  },
+];
 ---
 
 <BaseLayout title={`${item.title} / gybe.org`} description={item.summary} structuredData={structuredData}>

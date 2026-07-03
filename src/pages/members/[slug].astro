@@ -14,18 +14,29 @@ const { member } = Astro.props;
 const related = crossingPaths.filter((item) =>
   member.projects.some((project) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()))
 );
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: member.name,
-  url: `https://gybe.org/members/${member.slug}`,
-  description: member.summary,
-  memberOf: {
-    "@type": "MusicGroup",
-    name: "Godspeed You! Black Emperor",
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: member.name,
+    url: `https://gybe.org/members/${member.slug}/`,
+    description: member.summary,
+    memberOf: {
+      "@type": "MusicGroup",
+      name: "Godspeed You! Black Emperor",
+    },
+    hasOccupation: member.role,
   },
-  hasOccupation: member.role,
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://gybe.org/" },
+      { "@type": "ListItem", position: 2, name: "Members", item: "https://gybe.org/members/" },
+      { "@type": "ListItem", position: 3, name: member.name, item: `https://gybe.org/members/${member.slug}/` },
+    ],
+  },
+];
 ---
 
 <BaseLayout title={`${member.name} / gybe.org`} description={member.summary} structuredData={structuredData}>

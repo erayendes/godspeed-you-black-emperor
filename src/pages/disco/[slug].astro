@@ -11,26 +11,37 @@ export function getStaticPaths() {
 }
 
 const { album } = Astro.props;
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "MusicAlbum",
-  name: album.title,
-  url: `https://gybe.org/disco/${album.slug}`,
-  image: `https://gybe.org${album.image}`,
-  byArtist: {
-    "@type": "MusicGroup",
-    name: "Godspeed You! Black Emperor",
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicAlbum",
+    name: album.title,
+    url: `https://gybe.org/disco/${album.slug}/`,
+    image: `https://gybe.org${album.image}`,
+    byArtist: {
+      "@type": "MusicGroup",
+      name: "Godspeed You! Black Emperor",
+    },
+    datePublished: album.year,
+    recordLabel: album.label,
+    description: album.summary,
+    track: album.tracks.map((track, index) => ({
+      "@type": "MusicRecording",
+      position: index + 1,
+      name: track,
+    })),
+    sameAs: Object.values(album.links ?? {}).filter(Boolean),
   },
-  datePublished: album.year,
-  recordLabel: album.label,
-  description: album.summary,
-  track: album.tracks.map((track, index) => ({
-    "@type": "MusicRecording",
-    position: index + 1,
-    name: track,
-  })),
-  sameAs: Object.values(album.links ?? {}).filter(Boolean),
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://gybe.org/" },
+      { "@type": "ListItem", position: 2, name: "Discography", item: "https://gybe.org/disco/" },
+      { "@type": "ListItem", position: 3, name: album.title, item: `https://gybe.org/disco/${album.slug}/` },
+    ],
+  },
+];
 ---
 
 <BaseLayout title={`${album.title} / gybe.org`} description={album.summary} image={album.image} type="music.album" structuredData={structuredData}>
