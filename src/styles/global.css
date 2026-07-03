@@ -373,13 +373,25 @@ figure {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
   gap: clamp(24px, 5vw, 64px);
-  align-items: end;
+  align-items: stretch;
 }
 
-.hero .hero-title {
-  grid-column: 1 / -1;
-  margin-bottom: -10px;
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.hero-title {
+  font-size: clamp(2.55rem, 6.15vw, 5.8rem);
+  line-height: 0.9;
   max-width: none;
+  white-space: normal;
+}
+
+.hero-copy__body {
+  max-width: 560px;
 }
 
 .hero img {

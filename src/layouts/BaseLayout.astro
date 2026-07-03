@@ -16,6 +16,7 @@ const nav = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const gaMeasurementId = "G-TYG1HPB56V";
 ---
 
 <!doctype html>
@@ -25,6 +26,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+    <script is:inline define:vars={{ gaMeasurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", gaMeasurementId);
+    </script>
   </head>
   <body>
     <header class="site-header">
