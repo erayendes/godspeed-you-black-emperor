@@ -1,14 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "www.gybe.org"
-        }
-      ],
+      "source": "https://www.gybe.org/:path*",
       "destination": "https://gybe.org/:path*",
       "permanent": true
     }
