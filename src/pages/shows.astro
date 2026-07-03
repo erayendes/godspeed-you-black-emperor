@@ -1,9 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { shows } from "../data/shows";
+
+const structuredData = shows.dates.map((show) => ({
+  "@context": "https://schema.org",
+  "@type": "MusicEvent",
+  name: `Godspeed You! Black Emperor - ${show.city}`,
+  startDate: show.date,
+  url: show.ticketUrl,
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  performer: {
+    "@type": "MusicGroup",
+    name: "Godspeed You! Black Emperor",
+  },
+  location: {
+    "@type": "Place",
+    name: show.venue,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: show.city,
+      addressCountry: show.country,
+    },
+  },
+}));
 ---
 
-<BaseLayout title="shows / gybe.org" description="Current Godspeed You! Black Emperor live-date archive.">
+<BaseLayout title="shows / gybe.org" description="Current Godspeed You! Black Emperor live-date archive." structuredData={structuredData}>
   <h1 class="page-title">shows</h1>
   <p class="deck">
     Current dates are manually copied from the official label source. This keeps the page static, reviewable, and free to host.

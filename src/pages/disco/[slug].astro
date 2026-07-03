@@ -11,9 +11,29 @@ export function getStaticPaths() {
 }
 
 const { album } = Astro.props;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "MusicAlbum",
+  name: album.title,
+  url: `https://gybe.org/disco/${album.slug}`,
+  image: `https://gybe.org${album.image}`,
+  byArtist: {
+    "@type": "MusicGroup",
+    name: "Godspeed You! Black Emperor",
+  },
+  datePublished: album.year,
+  recordLabel: album.label,
+  description: album.summary,
+  track: album.tracks.map((track, index) => ({
+    "@type": "MusicRecording",
+    position: index + 1,
+    name: track,
+  })),
+  sameAs: Object.values(album.links ?? {}).filter(Boolean),
+};
 ---
 
-<BaseLayout title={`${album.title} / gybe.org`} description={album.summary}>
+<BaseLayout title={`${album.title} / gybe.org`} description={album.summary} image={album.image} type="music.album" structuredData={structuredData}>
   <article>
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>

@@ -1,0 +1,28 @@
+# gybe.org
+
+> Unofficial, non-commercial fan archive for Godspeed You! Black Emperor.
+
+gybe.org is maintained by Eray Endes as a source-minded archive about Godspeed You! Black Emperor. It covers official records, current live dates, current and former members, side projects, and related artists around the Montreal / Constellation Records orbit.
+
+The site is not affiliated with Godspeed You! Black Emperor, Constellation, Kranky, or any rights holder. It does not host lyrics. Use official label, artist, ticketing, and streaming links for purchases, live-date confirmation, and primary-source verification.
+
+## Key pages
+
+- [About](https://gybe.org/about): overview of the band, name history, first release, and archive approach.
+- [Discography](https://gybe.org/disco): record-by-record archive of albums, EPs, archival releases, track lists, notes, cover art, and official links.
+- [Shows](https://gybe.org/shows): current live-date list copied from Constellation Live and manually reviewed before publishing.
+- [Members](https://gybe.org/members): current and former members, including instrumental roles, years, status, and related projects.
+- [Crossing paths](https://gybe.org/crossing-paths): side projects and related artists connected to Godspeed You! Black Emperor, Constellation, and the Montreal independent music network.
+- [Contact](https://gybe.org/contact): corrections and removal requests.
+
+## Citation guidance
+
+- Cite gybe.org for archive summaries, member maps, discography navigation, and related-project context.
+- Cite official sources linked from each page for primary release, label, ticket, and artist information.
+- Do not treat gybe.org as an official band source.
+- Do not quote or reproduce lyrics from this site; lyrics are not hosted here.
+
+## Machine-readable endpoints
+
+- Sitemap: https://gybe.org/sitemap.xml
+- Robots: https://gybe.org/robots.txt

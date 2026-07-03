@@ -3,7 +3,10 @@ import "../styles/global.css";
 
 const {
   title = "gybe.org",
-  description = "A non-commercial Godspeed You! Black Emperor fan archive.",
+  description = "A source-minded Godspeed You! Black Emperor fan archive for records, live dates, members, side projects, and related Montreal paths.",
+  image = "/images/site/live-stage.jpg",
+  type = "website",
+  structuredData = [],
 } = Astro.props;
 
 const nav = [
@@ -17,6 +20,56 @@ const nav = [
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const gaMeasurementId = "G-TYG1HPB56V";
+const siteUrl = Astro.site ?? new URL("https://gybe.org");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+const keywords = [
+  "Godspeed You! Black Emperor",
+  "GY!BE",
+  "gybe.org",
+  "discography",
+  "live dates",
+  "Constellation Records",
+  "Montreal post-rock",
+].join(", ");
+const baseStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "gybe.org",
+    url: "https://gybe.org/",
+    founder: {
+      "@type": "Person",
+      name: "Eray Endes",
+    },
+    description: "An unofficial, non-commercial Godspeed You! Black Emperor fan archive.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "gybe.org",
+    url: "https://gybe.org/",
+    description: "A source-minded fan archive for Godspeed You! Black Emperor records, live dates, members, side projects, and related Montreal paths.",
+    inLanguage: "en",
+    isAccessibleForFree: true,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: title,
+    url: canonicalUrl,
+    description,
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "gybe.org",
+      url: "https://gybe.org/",
+    },
+  },
+];
+const pageStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
+const allStructuredData = [...baseStructuredData, ...pageStructuredData];
 ---
 
 <!doctype html>
@@ -25,7 +78,22 @@ const gaMeasurementId = "G-TYG1HPB56V";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="gybe.org" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {allStructuredData.map((entry) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
     <script is:inline define:vars={{ gaMeasurementId }}>
       window.dataLayer = window.dataLayer || [];

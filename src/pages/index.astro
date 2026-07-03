@@ -7,9 +7,26 @@ import { shows } from "../data/shows";
 
 const newest = albums[albums.length - 1];
 const currentMembers = members.filter((member) => member.status === "current");
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "gybe.org archive sections",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Discography", url: "https://gybe.org/disco" },
+      { "@type": "ListItem", position: 2, name: "Shows", url: "https://gybe.org/shows" },
+      { "@type": "ListItem", position: 3, name: "Members", url: "https://gybe.org/members" },
+      { "@type": "ListItem", position: 4, name: "Crossing paths", url: "https://gybe.org/crossing-paths" },
+    ],
+  },
+];
 ---
 
-<BaseLayout title="gybe.org">
+<BaseLayout
+  title="Godspeed You! Black Emperor Fan Archive / gybe.org"
+  description="A source-minded Godspeed You! Black Emperor fan archive for records, live dates, members, side projects, and related Montreal paths."
+  structuredData={structuredData}
+>
   <section class="hero">
     <div class="hero-copy">
       <h1 class="page-title hero-title">godspeed you!<br />black emperor</h1>

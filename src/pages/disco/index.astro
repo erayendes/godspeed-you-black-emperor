@@ -1,9 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { albums } from "../../data/albums";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Godspeed You! Black Emperor discography",
+  itemListElement: albums.map((album, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: album.title,
+    url: `https://gybe.org/disco/${album.slug}`,
+  })),
+};
 ---
 
-<BaseLayout title="discography / gybe.org" description="Godspeed You! Black Emperor discography archive.">
+<BaseLayout title="discography / gybe.org" description="Godspeed You! Black Emperor discography archive." structuredData={structuredData}>
   <h1 class="page-title">discography</h1>
   <p class="deck">
     A compact record-by-record map of the official albums, EPs, and archival releases, with cover art, track lists, notes, and official listening links where available.

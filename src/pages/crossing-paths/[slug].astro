@@ -10,9 +10,21 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: item.title,
+  url: `https://gybe.org/crossing-paths/${item.slug}`,
+  description: item.summary,
+  subjectOf: {
+    "@type": "WebPage",
+    url: `https://gybe.org/crossing-paths/${item.slug}`,
+  },
+  sameAs: item.links.map((link) => link.url),
+};
 ---
 
-<BaseLayout title={`${item.title} / gybe.org`} description={item.summary}>
+<BaseLayout title={`${item.title} / gybe.org`} description={item.summary} structuredData={structuredData}>
   <article class="content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>

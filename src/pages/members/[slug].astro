@@ -14,9 +14,21 @@ const { member } = Astro.props;
 const related = crossingPaths.filter((item) =>
   member.projects.some((project) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()))
 );
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: member.name,
+  url: `https://gybe.org/members/${member.slug}`,
+  description: member.summary,
+  memberOf: {
+    "@type": "MusicGroup",
+    name: "Godspeed You! Black Emperor",
+  },
+  hasOccupation: member.role,
+};
 ---
 
-<BaseLayout title={`${member.name} / gybe.org`} description={member.summary}>
+<BaseLayout title={`${member.name} / gybe.org`} description={member.summary} structuredData={structuredData}>
   <article class="content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>

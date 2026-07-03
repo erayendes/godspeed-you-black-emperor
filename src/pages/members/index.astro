@@ -4,9 +4,20 @@ import { members } from "../../data/members";
 
 const current = members.filter((member) => member.status === "current");
 const former = members.filter((member) => member.status === "former");
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Godspeed You! Black Emperor members",
+  itemListElement: members.map((member, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: member.name,
+    url: `https://gybe.org/members/${member.slug}`,
+  })),
+};
 ---
 
-<BaseLayout title="members / gybe.org" description="Current and former Godspeed You! Black Emperor members.">
+<BaseLayout title="members / gybe.org" description="Current and former Godspeed You! Black Emperor members." structuredData={structuredData}>
   <h1 class="page-title">members</h1>
   <p class="deck">
     Current and former members, including the projectionists who shaped the live image work, with related projects linked where useful.

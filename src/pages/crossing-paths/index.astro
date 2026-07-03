@@ -1,9 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { crossingPaths } from "../../data/crossingPaths";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Godspeed You! Black Emperor crossing paths",
+  itemListElement: crossingPaths.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.title,
+    url: `https://gybe.org/crossing-paths/${item.slug}`,
+  })),
+};
 ---
 
-<BaseLayout title="crossing-paths / gybe.org" description="Side projects and related artists around Godspeed You! Black Emperor.">
+<BaseLayout title="crossing-paths / gybe.org" description="Side projects and related artists around Godspeed You! Black Emperor." structuredData={structuredData}>
   <h1 class="page-title">crossing-paths</h1>
   <p class="deck">
     Side projects, related artists, and scene links around the Godspeed / Constellation / Montreal orbit.
