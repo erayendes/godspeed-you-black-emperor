@@ -18,6 +18,13 @@ const related = crossingPaths.filter((item) =>
 
 <BaseLayout title={`${member.name} / gybe.org`} description={member.summary}>
   <article class="content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">home</a>
+      <span>/</span>
+      <a href="/members">members</a>
+      <span>/</span>
+      <span>{member.name}</span>
+    </nav>
     <p class="meta">{member.status} / {member.years}</p>
     <h1 class="page-title">{member.name}</h1>
     <p class="deck">{member.summary}</p>

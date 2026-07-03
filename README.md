@@ -12,7 +12,6 @@ Static, English-language, non-commercial fan archive for Godspeed You! Black Emp
 - `/members/[member-slug]`
 - `/crossing-paths`
 - `/crossing-paths/[slug]`
-- `/archive`
 
 ## Development
 

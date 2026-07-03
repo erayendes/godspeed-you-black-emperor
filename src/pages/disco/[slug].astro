@@ -15,6 +15,13 @@ const { album } = Astro.props;
 
 <BaseLayout title={`${album.title} / gybe.org`} description={album.summary}>
   <article>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">home</a>
+      <span>/</span>
+      <a href="/disco">discography</a>
+      <span>/</span>
+      <span>{album.title}</span>
+    </nav>
     <div class="grid-two">
       <aside class="album-sidebar">
         <figure class="image-frame">
@@ -29,13 +36,6 @@ const { album } = Astro.props;
       </aside>
 
       <div class="content">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">home</a>
-          <span>/</span>
-          <a href="/disco">discography</a>
-          <span>/</span>
-          <span>{album.title}</span>
-        </nav>
         <p class="meta">{album.year} / {album.kind}</p>
         <h1 class="page-title">{album.title}</h1>
         <p class="deck">{album.summary}</p>
