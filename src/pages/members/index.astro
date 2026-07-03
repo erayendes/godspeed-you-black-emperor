@@ -12,12 +12,16 @@ const structuredData = {
     "@type": "ListItem",
     position: index + 1,
     name: member.name,
-    url: `https://gybe.org/members/${member.slug}`,
+    url: `https://gybe.org/members/${member.slug}/`,
   })),
 };
 ---
 
-<BaseLayout title="members / gybe.org" description="Current and former Godspeed You! Black Emperor members." structuredData={structuredData}>
+<BaseLayout
+  title="Godspeed You! Black Emperor Members / gybe.org"
+  description="Current and former Godspeed You! Black Emperor members, roles, years active, projectionists, and related projects around the Montreal collective."
+  structuredData={structuredData}
+>
   <h1 class="page-title">members</h1>
   <p class="deck">
     Current and former members, including the projectionists who shaped the live image work, with related projects linked where useful.

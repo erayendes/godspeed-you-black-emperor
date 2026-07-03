@@ -10,6 +10,7 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props;
+const description = `${item.summary} Includes relation notes, profile context, selected discography, and official links where available.`;
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -35,7 +36,7 @@ const structuredData = [
 ];
 ---
 
-<BaseLayout title={`${item.title} / gybe.org`} description={item.summary} structuredData={structuredData}>
+<BaseLayout title={`${item.title} and the GY!BE Network / gybe.org`} description={description} structuredData={structuredData}>
   <article class="content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>

@@ -11,6 +11,7 @@ export function getStaticPaths() {
 }
 
 const { member } = Astro.props;
+const description = `${member.summary} Includes role, years active, status, and related projects in the GY!BE archive.`;
 const related = crossingPaths.filter((item) =>
   member.projects.some((project) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()))
 );
@@ -39,7 +40,7 @@ const structuredData = [
 ];
 ---
 
-<BaseLayout title={`${member.name} / gybe.org`} description={member.summary} structuredData={structuredData}>
+<BaseLayout title={`${member.name} - Godspeed You! Black Emperor Member / gybe.org`} description={description} structuredData={structuredData}>
   <article class="content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>

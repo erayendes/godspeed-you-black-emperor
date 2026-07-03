@@ -11,6 +11,9 @@ export function getStaticPaths() {
 }
 
 const { album } = Astro.props;
+const imageSize = album.image.includes("all-lights-fucked") || album.image.includes("f-sharp-a-sharp-infinity")
+  ? { width: 700, height: 700 }
+  : { width: 1200, height: 1200 };
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -44,7 +47,7 @@ const structuredData = [
 ];
 ---
 
-<BaseLayout title={`${album.title} / gybe.org`} description={album.summary} image={album.image} type="music.album" structuredData={structuredData}>
+<BaseLayout title={`${album.title} - GY!BE Album / gybe.org`} description={album.summary} image={album.image} type="music.album" structuredData={structuredData}>
   <article>
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>
@@ -56,7 +59,7 @@ const structuredData = [
     <div class="grid-two">
       <aside class="album-sidebar">
         <figure class="image-frame">
-          <img src={album.image} alt={`${album.title} cover art`} />
+          <img src={album.image} alt={`${album.title} cover art`} width={imageSize.width} height={imageSize.height} />
         </figure>
         <div class="link-list" aria-label="Official links">
           {album.links?.constellation && <a href={album.links.constellation}>constellation</a>}

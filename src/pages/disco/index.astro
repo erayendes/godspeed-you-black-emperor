@@ -10,12 +10,16 @@ const structuredData = {
     "@type": "ListItem",
     position: index + 1,
     name: album.title,
-    url: `https://gybe.org/disco/${album.slug}`,
+    url: `https://gybe.org/disco/${album.slug}/`,
   })),
 };
 ---
 
-<BaseLayout title="discography / gybe.org" description="Godspeed You! Black Emperor discography archive." structuredData={structuredData}>
+<BaseLayout
+  title="Godspeed You! Black Emperor Discography / gybe.org"
+  description="A record-by-record Godspeed You! Black Emperor discography with albums, EPs, archival releases, track lists, notes, cover art, and official links."
+  structuredData={structuredData}
+>
   <h1 class="page-title">discography</h1>
   <p class="deck">
     A compact record-by-record map of the official albums, EPs, and archival releases, with cover art, track lists, notes, and official listening links where available.

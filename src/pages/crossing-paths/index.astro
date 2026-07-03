@@ -10,12 +10,16 @@ const structuredData = {
     "@type": "ListItem",
     position: index + 1,
     name: item.title,
-    url: `https://gybe.org/crossing-paths/${item.slug}`,
+    url: `https://gybe.org/crossing-paths/${item.slug}/`,
   })),
 };
 ---
 
-<BaseLayout title="crossing-paths / gybe.org" description="Side projects and related artists around Godspeed You! Black Emperor." structuredData={structuredData}>
+<BaseLayout
+  title="GY!BE Side Projects and Related Artists / gybe.org"
+  description="Side projects, related artists, and scene links around Godspeed You! Black Emperor, Constellation Records, and the Montreal independent music network."
+  structuredData={structuredData}
+>
   <h1 class="page-title">crossing-paths</h1>
   <p class="deck">
     Side projects, related artists, and scene links around the Godspeed / Constellation / Montreal orbit.

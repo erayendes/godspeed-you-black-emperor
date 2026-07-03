@@ -44,7 +44,7 @@ export function GET() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
   .map((page) => {
-    const loc = `${site}${page.path === "/" ? "" : page.path}`;
+    const loc = `${site}${page.path}`;
     const lastmod = page.lastmod ? `\n    <lastmod>${escapeXml(page.lastmod)}</lastmod>` : "";
 
     return `  <url>
