@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { albums } from "../data/albums";
+import { members } from "../data/members";
+import { crossingPaths } from "../data/crossingPaths";
+import { shows } from "../data/shows";
+
+const newest = albums[albums.length - 1];
+const currentMembers = members.filter((member) => member.status === "current");
+---
+
+<BaseLayout title="gybe.org">
+  <section class="hero">
+    <h1 class="page-title hero-title">Godspeed You! Black Emperor</h1>
+    <div class="hero-copy">
+      <p class="deck">
+        A plain-text fan archive for records, live dates, members, and the crossing paths around the Montreal collective.
+      </p>
+      <div class="link-list" aria-label="Primary sections">
+        <a href="/disco">discography</a>
+        <a href="/shows">live dates</a>
+        <a href="/members">members</a>
+        <a href="/crossing-paths">crossing paths</a>
+      </div>
+    </div>
+    <figure class="image-frame">
+      <img src="/images/site/live-stage.jpg" alt="Godspeed You! Black Emperor performing on a dark stage" />
+    </figure>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="grid-two">
+    <div>
+      <p class="meta">latest archive node</p>
+      <h2 class="section-title"><a href={`/disco/${newest.slug}`}>{newest.title}</a></h2>
+      <p>{newest.summary}</p>
+    </div>
+    <div>
+      <p class="meta">live source / last checked {shows.lastChecked}</p>
+      <h2 class="section-title"><a href="/shows">current show list</a></h2>
+      <p>
+        Dates are copied from <a href={shows.sourceUrl}>{shows.source}</a> and reviewed manually before publishing.
+      </p>
+      <div class="archive-list compact-list" aria-label="Current shows">
+        {shows.dates.map((show) => (
+          <div class="archive-row">
+            <span class="meta">{show.displayDate}</span>
+            <a class="archive-row__title" href={show.ticketUrl}>{show.city}, {show.country}</a>
+            <span class="archive-row__note">{show.venue}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">index</h2>
+    <div class="archive-list">
+      <div class="archive-row">
+        <span class="meta">{albums.length} entries</span>
+        <a class="archive-row__title" href="/disco">discography</a>
+        <span class="archive-row__note">album pages, covers, official links, streaming players</span>
+      </div>
+      <div class="archive-row">
+        <span class="meta">{currentMembers.length} current</span>
+        <a class="archive-row__title" href="/members">members</a>
+        <span class="archive-row__note">current and former lineups</span>
+      </div>
+      <div class="archive-row">
+        <span class="meta">{crossingPaths.length} nodes</span>
+        <a class="archive-row__title" href="/crossing-paths">crossing-paths</a>
+        <span class="archive-row__note">side projects and related artists</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

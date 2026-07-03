@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { crossingPaths } from "../../data/crossingPaths";
+
+export function getStaticPaths() {
+  return crossingPaths.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<BaseLayout title={`${item.title} / gybe.org`} description={item.summary}>
+  <article class="content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">home</a>
+      <span>/</span>
+      <a href="/crossing-paths">crossing-paths</a>
+      <span>/</span>
+      <span>{item.title}</span>
+    </nav>
+    <p class="meta">{item.relation}</p>
+    <h1 class="page-title">{item.title}</h1>
+    <p class="deck">{item.summary}</p>
+
+    <h2>profile</h2>
+    {item.body.map((paragraph) => <p>{paragraph}</p>)}
+
+    {item.discography.length > 0 && (
+      <>
+        <h2>selected discography</h2>
+        <ul>
+          {item.discography.map((release) => <li>{release}</li>)}
+        </ul>
+      </>
+    )}
+
+    {item.links.length > 0 && (
+      <>
+        <h2>links</h2>
+        <div class="link-list">
+          {item.links.map((link) => <a href={link.url}>{link.label}</a>)}
+        </div>
+      </>
+    )}
+  </article>
+</BaseLayout>

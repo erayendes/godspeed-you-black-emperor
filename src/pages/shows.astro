@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { shows } from "../data/shows";
+---
+
+<BaseLayout title="shows / gybe.org" description="Current Godspeed You! Black Emperor live-date archive.">
+  <h1 class="page-title">shows</h1>
+  <p class="deck">
+    Current dates are manually copied from the official label source. This keeps the page static, reviewable, and free to host.
+  </p>
+
+  <section class="content">
+    <p class="side-note">
+      Source: <a href={shows.sourceUrl}>{shows.source}</a><br />
+      Last checked: {shows.lastChecked}<br />
+      Update mode: {shows.updateMode}
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">upcoming</h2>
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>City</th>
+          <th>Venue / festival</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        {shows.dates.map((show) => (
+          <tr>
+            <td>{show.displayDate}</td>
+            <td>{show.city}, {show.country}</td>
+            <td>{show.venue}</td>
+            <td><a href={show.ticketUrl}>ticket/source</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+</BaseLayout>

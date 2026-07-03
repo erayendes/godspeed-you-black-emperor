@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { albums } from "../../data/albums";
+---
+
+<BaseLayout title="discography / gybe.org" description="Godspeed You! Black Emperor discography archive.">
+  <h1 class="page-title">discography</h1>
+  <p class="deck">
+    Album pages preserve the discography structure with cover art, track lists, official links, and Spotify or Apple Music players when available.
+  </p>
+
+  <section class="archive-list" aria-label="Discography entries">
+    {albums.map((album) => (
+      <div class="archive-row">
+        <span class="meta">{album.year}</span>
+        <a class="archive-row__title" href={`/disco/${album.slug}`}>{album.title}</a>
+        <span class="archive-row__note">{album.kind}</span>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

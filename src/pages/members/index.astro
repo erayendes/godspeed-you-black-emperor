@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { members } from "../../data/members";
+
+const current = members.filter((member) => member.status === "current");
+const former = members.filter((member) => member.status === "former");
+---
+
+<BaseLayout title="members / gybe.org" description="Current and former Godspeed You! Black Emperor members.">
+  <h1 class="page-title">members</h1>
+  <p class="deck">
+    Current and former members get individual archive pages, with related crossing paths linked where useful.
+  </p>
+
+  <h2 class="section-title">current</h2>
+  <section class="archive-list">
+    {current.map((member) => (
+      <div class="archive-row">
+        <span class="meta">{member.years}</span>
+        <a class="archive-row__title" href={`/members/${member.slug}`}>{member.name}</a>
+        <span class="archive-row__note">{member.role}</span>
+      </div>
+    ))}
+  </section>
+
+  <h2 class="section-title">former</h2>
+  <section class="archive-list">
+    {former.map((member) => (
+      <div class="archive-row">
+        <span class="meta">{member.years}</span>
+        <a class="archive-row__title" href={`/members/${member.slug}`}>{member.name}</a>
+        <span class="archive-row__note">{member.role}</span>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

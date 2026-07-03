@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "gybe.org",
+  description = "A non-commercial Godspeed You! Black Emperor fan archive.",
+} = Astro.props;
+
+const nav = [
+  ["about", "/about"],
+  ["discography", "/disco"],
+  ["shows", "/shows"],
+  ["members", "/members"],
+  ["crossing-paths", "/crossing-paths"],
+  ["archive", "/archive"],
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-shell site-header__inner">
+        <div class="wordmark">
+          <a href="/">godspeed you! black emperor</a>
+          <small>an unofficial non-commercial fan archive</small>
+        </div>
+        <nav class="nav" aria-label="Primary navigation">
+          {nav.map(([label, href]) => (
+            <a href={href} aria-current={currentPath === href ? "page" : undefined}>{label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-shell">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-shell">
+        <p>
+          gybe.org is fan-run and unaffiliated. Buy records and confirm live dates through official sources.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AlbumEmbed from "../../components/AlbumEmbed.astro";
+import { albums } from "../../data/albums";
+
+export function getStaticPaths() {
+  return albums.map((album) => ({
+    params: { slug: album.slug },
+    props: { album },
+  }));
+}
+
+const { album } = Astro.props;
+---
+
+<BaseLayout title={`${album.title} / gybe.org`} description={album.summary}>
+  <article>
+    <div class="grid-two">
+      <aside class="album-sidebar">
+        <figure class="image-frame">
+          <img src={album.image} alt={`${album.title} cover art`} />
+        </figure>
+        <div class="link-list" aria-label="Official links">
+          {album.links?.constellation && <a href={album.links.constellation}>constellation</a>}
+          {album.links?.bandcamp && <a href={album.links.bandcamp}>bandcamp</a>}
+          {album.links?.spotify && <a href={album.links.spotify}>spotify</a>}
+          {album.links?.appleMusic && <a href={album.links.appleMusic}>apple music</a>}
+        </div>
+      </aside>
+
+      <div class="content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">home</a>
+          <span>/</span>
+          <a href="/disco">discography</a>
+          <span>/</span>
+          <span>{album.title}</span>
+        </nav>
+        <p class="meta">{album.year} / {album.kind}</p>
+        <h1 class="page-title">{album.title}</h1>
+        <p class="deck">{album.summary}</p>
+
+        <h2>record data</h2>
+        <table class="status-table">
+          <tbody>
+            <tr><th>year</th><td>{album.year}</td></tr>
+            <tr><th>type</th><td>{album.kind}</td></tr>
+            <tr><th>label</th><td>{album.label}</td></tr>
+          </tbody>
+        </table>
+
+        <h2>notes</h2>
+        <ul>
+          {album.notes.map((note) => <li>{note}</li>)}
+        </ul>
+
+        <h2>track list</h2>
+        <ol>
+          {album.tracks.map((track) => <li>{track}</li>)}
+        </ol>
+
+        <AlbumEmbed spotifyUrl={album.links?.spotify} appleMusicUrl={album.links?.appleMusic} />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { archiveItems } from "../data/archive";
+---
+
+<BaseLayout title="archive / gybe.org" description="Archive notes and source inventory for gybe.org.">
+  <h1 class="page-title">archive</h1>
+  <p class="deck">
+    A practical map of what this site contains, what it intentionally leaves out, and how it stays current.
+  </p>
+
+  <section class="archive-list source-list">
+    {archiveItems.map((item) => (
+      <div class="archive-row">
+        <span class="tag">{item.type}</span>
+        <span class="archive-row__title">{item.label}</span>
+        <span class="archive-row__note">{item.note}</span>
+      </div>
+    ))}
+  </section>
+
+  <section class="content">
+    <h2>maintenance</h2>
+    <p>
+      Album and member pages are edited manually. Live dates are copied from Constellation and checked by a weekly monitor that creates a review issue instead of publishing automatically.
+    </p>
+  </section>
+</BaseLayout>

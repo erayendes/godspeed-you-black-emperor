@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { crossingPaths } from "../../data/crossingPaths";
+---
+
+<BaseLayout title="crossing-paths / gybe.org" description="Side projects and related artists around Godspeed You! Black Emperor.">
+  <h1 class="page-title">crossing-paths</h1>
+  <p class="deck">
+    Side projects, related artists, and scene links around the Godspeed / Constellation / Montreal orbit.
+  </p>
+
+  <section class="crossing-list">
+    {crossingPaths.map((item) => (
+      <article class="crossing-item">
+        <a class="crossing-item__title" href={`/crossing-paths/${item.slug}`}>{item.title}</a>
+        <p class="crossing-item__relation">{item.relation}</p>
+        <p class="crossing-item__summary">{item.summary}</p>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

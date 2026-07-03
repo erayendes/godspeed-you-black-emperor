@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { members } from "../../data/members";
+import { crossingPaths } from "../../data/crossingPaths";
+
+export function getStaticPaths() {
+  return members.map((member) => ({
+    params: { slug: member.slug },
+    props: { member },
+  }));
+}
+
+const { member } = Astro.props;
+const related = crossingPaths.filter((item) =>
+  member.projects.some((project) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()))
+);
+---
+
+<BaseLayout title={`${member.name} / gybe.org`} description={member.summary}>
+  <article class="content">
+    <p class="meta">{member.status} / {member.years}</p>
+    <h1 class="page-title">{member.name}</h1>
+    <p class="deck">{member.summary}</p>
+
+    {member.bio && (
+      <>
+        <h2>biography</h2>
+        {member.bio.map((paragraph) => <p>{paragraph}</p>)}
+      </>
+    )}
+
+    <h2>role</h2>
+    <table class="status-table">
+      <tbody>
+        <tr><th>instrument / work</th><td>{member.role}</td></tr>
+        <tr><th>years</th><td>{member.years}</td></tr>
+        <tr><th>status</th><td>{member.status}</td></tr>
+      </tbody>
+    </table>
+
+    {member.projects.length > 0 && (
+      <>
+        <h2>crossing paths</h2>
+        <ul>
+          {member.projects.map((project) => {
+            const match = related.find((item) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()));
+            return <li>{match ? <a href={`/crossing-paths/${match.slug}`}>{project}</a> : project}</li>;
+          })}
+        </ul>
+      </>
+    )}
+  </article>
+</BaseLayout>

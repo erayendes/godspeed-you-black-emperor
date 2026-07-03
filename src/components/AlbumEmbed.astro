@@ -1,0 +1,63 @@
+---
+const { spotifyUrl, appleMusicUrl } = Astro.props;
+
+function spotifyEmbed(url: string | undefined) {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    const parts = parsed.pathname.split("/").filter(Boolean);
+    const albumIndex = parts.indexOf("album");
+    if (albumIndex === -1 || !parts[albumIndex + 1]) return null;
+    return `https://open.spotify.com/embed/album/${parts[albumIndex + 1]}?utm_source=generator`;
+  } catch {
+    return null;
+  }
+}
+
+function appleEmbed(url: string | undefined) {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    if (!parsed.hostname.includes("music.apple.com")) return null;
+    return `https://embed.music.apple.com${parsed.pathname}`;
+  } catch {
+    return null;
+  }
+}
+
+const spotifySrc = spotifyEmbed(spotifyUrl);
+const appleSrc = appleEmbed(appleMusicUrl);
+---
+
+{spotifySrc && (
+  <section class="embed" aria-label="Spotify embed">
+    <iframe
+      title="Spotify album player"
+      src={spotifySrc}
+      height="352"
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    ></iframe>
+  </section>
+)}
+
+{!spotifySrc && spotifyUrl && (
+  <p><a class="button-link" href={spotifyUrl}>Open on Spotify</a></p>
+)}
+
+{appleSrc && (
+  <section class="embed" aria-label="Apple Music embed">
+    <iframe
+      title="Apple Music album player"
+      src={appleSrc}
+      height="450"
+      loading="lazy"
+      allow="autoplay *; encrypted-media *; fullscreen *"
+      sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+    ></iframe>
+  </section>
+)}
+
+{!appleSrc && appleMusicUrl && (
+  <p><a class="button-link" href={appleMusicUrl}>Open on Apple Music</a></p>
+)}

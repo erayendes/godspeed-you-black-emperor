@@ -1,0 +1,61 @@
+name: Check Constellation Live Source
+
+on:
+  schedule:
+    - cron: "21 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-live-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check official live source
+        id: live
+        continue-on-error: true
+        run: node scripts/check-live-source.mjs > live-check.txt
+
+      - name: Print check result
+        run: cat live-check.txt
+
+      - name: Open review issue
+        if: steps.live.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = [
+              'The Constellation live source may have changed.',
+              '',
+              'Review the source and update `src/data/shows.ts` manually if needed.',
+              '',
+              '```',
+              fs.readFileSync('live-check.txt', 'utf8').trim(),
+              '```'
+            ].join('\n');
+
+            const { owner, repo } = context.repo;
+            const existing = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'open'
+            });
+
+            const alreadyOpen = existing.data.some((issue) =>
+              issue.title === 'Review Constellation live-date source'
+            );
+
+            if (!alreadyOpen) {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title: 'Review Constellation live-date source',
+                body
+              });
+            }
