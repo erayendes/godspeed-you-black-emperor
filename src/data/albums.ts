@@ -29,7 +29,7 @@ export const albums = [
     ],
     links: {
       bandcamp: "https://godspeedyoublackemperor.bandcamp.com/",
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor"
+      constellation: "https://cstrecords.com/en-int/pages/artist/godspeed-you-black-emperor"
     }
   },
   {
@@ -47,7 +47,7 @@ export const albums = [
     ],
     tracks: ["The Dead Flag Blues", "East Hastings", "Providence"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-f-a-1995-1997",
       spotify: "",
       appleMusic: ""
     }
@@ -67,7 +67,7 @@ export const albums = [
     ],
     tracks: ["Moya", "Blaise Bailey Finnegan III"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-slow-riot-for-new-zero-kanada",
       spotify: "",
       appleMusic: ""
     }
@@ -92,7 +92,7 @@ export const albums = [
       "Like Antennas to Heaven..."
     ],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-lift-your-skinny-fists-like-antennas-to-heaven",
       spotify: "",
       appleMusic: ""
     }
@@ -112,7 +112,7 @@ export const albums = [
     ],
     tracks: ["09-15-00", "Rockets Fall on Rocket Falls", "Motherfucker=Redeemer"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-yanqui-u-x-o",
       spotify: "",
       appleMusic: ""
     }
@@ -132,7 +132,7 @@ export const albums = [
     ],
     tracks: ["Mladic", "Their Helicopters' Sing", "We Drift Like Worried Fire", "Strung Like Lights at Thee Printemps Erable"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-allelujah-dont-bend-ascend",
       spotify: "",
       appleMusic: ""
     }
@@ -152,7 +152,7 @@ export const albums = [
     ],
     tracks: ["Peasantry or 'Light! Inside of Light!'", "Lambs' Breath", "Asunder, Sweet", "Piss Crowns Are Trebled"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-asunder-sweet-and-other-distress",
       spotify: "",
       appleMusic: ""
     }
@@ -172,7 +172,7 @@ export const albums = [
     ],
     tracks: ["Undoing a Luciferian Towers", "Bosses Hang", "Fam/Famine", "Anthem for No State"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-luciferian-towers",
       spotify: "",
       appleMusic: ""
     }
@@ -192,7 +192,7 @@ export const albums = [
     ],
     tracks: ["A Military Alphabet (five eyes all blind)", "Fire at Static Valley", "Government Came", "Our Side Has to Win (for D.H.)"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/godspeed-you-black-emperor-g_d-s-pee-at-state-s-end",
       spotify: "",
       appleMusic: ""
     }
@@ -212,7 +212,7 @@ export const albums = [
     ],
     tracks: ["Sun Is a Hole Sun Is Vapors", "Babys in a Thundercloud", "Raindrops Cast in Lead", "Broken Spires at Dead Kapital", "Pale Spectator Takes Photographs", "Grey Rubble - Green Shoots"],
     links: {
-      constellation: "https://cstrecords.com/pages/artist/godspeed-you-black-emperor",
+      constellation: "https://cstrecords.com/en-int/products/cst183",
       spotify: "",
       appleMusic: ""
     }

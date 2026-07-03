@@ -38,7 +38,7 @@ const structuredData = shows.dates.map((show) => ({
 
   <section class="content">
     <p class="side-note">
-      Source: <a href={shows.sourceUrl}>{shows.source}</a><br />
+      Source: <a href={shows.sourceUrl} target="_blank" rel="noopener noreferrer">{shows.source}</a><br />
       Last checked: {shows.lastChecked}<br />
       Update mode: {shows.updateMode}
     </p>
@@ -61,7 +61,7 @@ const structuredData = shows.dates.map((show) => ({
             <td>{show.displayDate}</td>
             <td>{show.city}, {show.country}</td>
             <td>{show.venue}</td>
-            <td><a href={show.ticketUrl}>ticket/source</a></td>
+            <td><a href={show.ticketUrl} target="_blank" rel="noopener noreferrer">ticket/source</a></td>
           </tr>
         ))}
       </tbody>

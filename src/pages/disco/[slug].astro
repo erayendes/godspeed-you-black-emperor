@@ -14,6 +14,17 @@ const { album } = Astro.props;
 const imageSize = album.image.includes("all-lights-fucked") || album.image.includes("f-sharp-a-sharp-infinity")
   ? { width: 700, height: 700 }
   : { width: 1200, height: 1200 };
+type SourceLink = {
+  label: string;
+  url: string;
+};
+
+const sourceLinks: SourceLink[] = [
+  { label: "Constellation", url: album.links?.constellation },
+  { label: "Bandcamp", url: album.links?.bandcamp },
+  { label: "Spotify", url: album.links?.spotify },
+  { label: "Apple Music", url: album.links?.appleMusic },
+].filter((source): source is SourceLink => Boolean(source.url));
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -34,6 +45,7 @@ const structuredData = [
       name: track,
     })),
     sameAs: Object.values(album.links ?? {}).filter(Boolean),
+    citation: sourceLinks.map((source) => source.url),
   },
   {
     "@context": "https://schema.org",
@@ -62,10 +74,10 @@ const structuredData = [
           <img src={album.image} alt={`${album.title} cover art`} width={imageSize.width} height={imageSize.height} />
         </figure>
         <div class="link-list" aria-label="Official links">
-          {album.links?.constellation && <a href={album.links.constellation}>constellation</a>}
-          {album.links?.bandcamp && <a href={album.links.bandcamp}>bandcamp</a>}
-          {album.links?.spotify && <a href={album.links.spotify}>spotify</a>}
-          {album.links?.appleMusic && <a href={album.links.appleMusic}>apple music</a>}
+          {album.links?.constellation && <a href={album.links.constellation} target="_blank" rel="noopener noreferrer">constellation</a>}
+          {album.links?.bandcamp && <a href={album.links.bandcamp} target="_blank" rel="noopener noreferrer">bandcamp</a>}
+          {album.links?.spotify && <a href={album.links.spotify} target="_blank" rel="noopener noreferrer">spotify</a>}
+          {album.links?.appleMusic && <a href={album.links.appleMusic} target="_blank" rel="noopener noreferrer">apple music</a>}
         </div>
       </aside>
 
@@ -94,6 +106,17 @@ const structuredData = [
         </ol>
 
         <AlbumEmbed spotifyUrl={album.links?.spotify} appleMusicUrl={album.links?.appleMusic} />
+
+        {sourceLinks.length > 0 && (
+          <>
+            <h2>source links</h2>
+            <ul>
+              {sourceLinks.map((source) => (
+                <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   </article>

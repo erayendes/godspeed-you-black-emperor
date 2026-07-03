@@ -65,7 +65,7 @@ const structuredData = [
       <>
         <h2>links</h2>
         <div class="link-list">
-          {item.links.map((link) => <a href={link.url}>{link.label}</a>)}
+          {item.links.map((link) => <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
         </div>
       </>
     )}
