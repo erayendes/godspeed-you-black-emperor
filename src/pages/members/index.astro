@@ -32,7 +32,7 @@ const structuredData = {
     {current.map((member) => (
       <div class="archive-row">
         <span class="meta">{member.years}</span>
-        <a class="archive-row__title" href={`/members/${member.slug}`}>{member.name}</a>
+        <a class="archive-row__title" href={`/members/${member.slug}/`}>{member.name}</a>
         <span class="archive-row__note">{member.role}</span>
       </div>
     ))}
@@ -43,7 +43,7 @@ const structuredData = {
     {former.map((member) => (
       <div class="archive-row">
         <span class="meta">{member.years}</span>
-        <a class="archive-row__title" href={`/members/${member.slug}`}>{member.name}</a>
+        <a class="archive-row__title" href={`/members/${member.slug}/`}>{member.name}</a>
         <span class="archive-row__note">{member.role}</span>
       </div>
     ))}

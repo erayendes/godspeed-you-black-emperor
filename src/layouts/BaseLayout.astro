@@ -10,15 +10,15 @@ const {
 } = Astro.props;
 
 const nav = [
-  ["about", "/about"],
-  ["discography", "/disco"],
-  ["shows", "/shows"],
-  ["members", "/members"],
-  ["crossing-paths", "/crossing-paths"],
-  ["contact", "/contact"],
+  ["about", "/about/"],
+  ["discography", "/disco/"],
+  ["shows", "/shows/"],
+  ["members", "/members/"],
+  ["crossing-paths", "/crossing-paths/"],
+  ["contact", "/contact/"],
 ];
 
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/?$/, "/");
 const gaMeasurementId = "G-TYG1HPB56V";
 const siteUrl = Astro.site ?? new URL("https://gybe.org");
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
@@ -128,7 +128,7 @@ const allStructuredData = [...baseStructuredData, ...pageStructuredData];
         <p>
           gybe.org is maintained by Eray Endes as an unofficial, non-commercial fan archive and is not affiliated with the band, Constellation, Kranky, or any rights holder.
           All names, artwork, and trademarks belong to their owners. No lyrics are hosted here. Buy records and confirm live dates through official sources.{" "}
-          <a href="/contact">Contact</a> for corrections or removal requests.
+          <a href="/contact/">Contact</a> for corrections or removal requests.
         </p>
       </div>
     </footer>

@@ -39,7 +39,6 @@ export const crossingPaths = [
       "barn levitate (2016)"
     ],
     links: [
-      { label: "Constellation", url: "https://cstrecords.com/pages/artist/set-fire-to-flames" },
       { label: "Bandcamp", url: "https://setfiretoflames.bandcamp.com/" }
     ]
   },
@@ -189,7 +188,7 @@ export const crossingPaths = [
     ],
     discography: ["Triple Burner (2006)", "Helsinki (2008)"],
     links: [
-      { label: "Constellation", url: "https://cstrecords.com/pages/artist/triple-burner" }
+      { label: "Bandcamp", url: "https://harrisnewman.bandcamp.com/album/triple-burner" }
     ]
   },
   {
@@ -204,7 +203,7 @@ export const crossingPaths = [
     ],
     discography: ["I Thought It Was Us But It Was All of Us (2013)", "A Common Truth (2017)"],
     links: [
-      { label: "Constellation", url: "https://cstrecords.com/pages/artist/saltland" },
+      { label: "Constellation", url: "https://cstrecords.com/pages/artist/rebecca-foon-saltland" },
       { label: "Bandcamp", url: "https://saltland.bandcamp.com/" }
     ]
   },

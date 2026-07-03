@@ -35,10 +35,10 @@ const structuredData = [
           A source-minded fan archive for Godspeed You! Black Emperor: records, live dates, members, side projects, and the Montreal paths around them.
         </p>
         <div class="link-list" aria-label="Primary sections">
-          <a href="/disco">discography</a>
-          <a href="/shows">live dates</a>
-          <a href="/members">members</a>
-          <a href="/crossing-paths">crossing paths</a>
+          <a href="/disco/">discography</a>
+          <a href="/shows/">live dates</a>
+          <a href="/members/">members</a>
+          <a href="/crossing-paths/">crossing paths</a>
         </div>
       </div>
     </div>
@@ -52,12 +52,12 @@ const structuredData = [
   <section class="grid-two">
     <div>
       <p class="meta">latest record</p>
-      <h2 class="section-title"><a href={`/disco/${newest.slug}`}>{newest.title}</a></h2>
+      <h2 class="section-title"><a href={`/disco/${newest.slug}/`}>{newest.title}</a></h2>
       <p>{newest.summary}</p>
     </div>
     <div>
       <p class="meta">live source / last checked {shows.lastChecked}</p>
-      <h2 class="section-title"><a href="/shows">current show list</a></h2>
+      <h2 class="section-title"><a href="/shows/">current show list</a></h2>
       <p>
         Dates are copied from <a href={shows.sourceUrl} target="_blank" rel="noopener noreferrer">{shows.source}</a>, then reviewed here before publishing.
       </p>
@@ -78,17 +78,17 @@ const structuredData = [
     <div class="archive-list">
       <div class="archive-row">
         <span class="meta">{albums.length} entries</span>
-        <a class="archive-row__title" href="/disco">discography</a>
+        <a class="archive-row__title" href="/disco/">discography</a>
         <span class="archive-row__note">records, track lists, notes, official links</span>
       </div>
       <div class="archive-row">
         <span class="meta">{currentMembers.length} current</span>
-        <a class="archive-row__title" href="/members">members</a>
+        <a class="archive-row__title" href="/members/">members</a>
         <span class="archive-row__note">current and former members, including projectionists</span>
       </div>
       <div class="archive-row">
         <span class="meta">{crossingPaths.length} nodes</span>
-        <a class="archive-row__title" href="/crossing-paths">crossing-paths</a>
+        <a class="archive-row__title" href="/crossing-paths/">crossing-paths</a>
         <span class="archive-row__note">side projects and related artists</span>
       </div>
     </div>

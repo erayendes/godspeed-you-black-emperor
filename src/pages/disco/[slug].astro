@@ -11,6 +11,12 @@ export function getStaticPaths() {
 }
 
 const { album } = Astro.props;
+const seoTitles: Record<string, string> = {
+  "all-lights-fucked-on-the-hairy-amp-drooling": "All Lights Fucked | GY!BE Album",
+  "lift-your-skinny-fists-like-antennas-to-heaven": "Lift Your Skinny Fists | GY!BE Album",
+  "no-title-as-of-13-february-2024-28-340-dead": "NO TITLE (2024) | GY!BE Album",
+};
+const pageTitle = seoTitles[album.slug] ?? `${album.title} | GY!BE Album`;
 const imageSize = album.image.includes("all-lights-fucked") || album.image.includes("f-sharp-a-sharp-infinity")
   ? { width: 700, height: 700 }
   : { width: 1200, height: 1200 };
@@ -19,12 +25,26 @@ type SourceLink = {
   url: string;
 };
 
-const sourceLinks: SourceLink[] = [
+const officialSourceLinks: SourceLink[] = [
   { label: "Constellation", url: album.links?.constellation },
   { label: "Bandcamp", url: album.links?.bandcamp },
+].filter((source): source is SourceLink => Boolean(source.url));
+const streamingLinks: SourceLink[] = [
   { label: "Spotify", url: album.links?.spotify },
   { label: "Apple Music", url: album.links?.appleMusic },
 ].filter((source): source is SourceLink => Boolean(source.url));
+const sourceLinks = [...officialSourceLinks, ...streamingLinks];
+const trackText = album.tracks.length === 1 ? "one listed piece" : `${album.tracks.length} listed pieces`;
+const officialSourceText = officialSourceLinks.length > 0
+  ? `The official source area points to ${officialSourceLinks.map((source) => source.label).join(" and ")}.`
+  : "No current primary label or artist source is listed for this entry.";
+const streamingSourceText = streamingLinks.length > 0
+  ? `Streaming links are separated from those primary sources because they are listening options, not release documentation.`
+  : "Streaming links are separated from primary sources when available; this entry currently keeps the page focused on release documentation.";
+const archiveContext = [
+  `${album.title} is archived here as a ${album.kind} from ${album.year}, with label context recorded as ${album.label}. This page is written as a compact reference entry rather than a review: it keeps the release identity, track list, cover image, edition notes, and source links visible in one place. The short summary above gives the quick orientation, while this context section explains why the record belongs in the discography and how the entry should be read.`,
+  `For SEO and archive clarity, the page separates facts that identify the record from links that help verify or hear it. The track list has ${trackText}, and the notes below preserve release, edition, or historical details that affect how the record is understood. ${officialSourceText} ${streamingSourceText} When facts change or a better primary source appears, the source section should be updated before the surrounding prose is expanded.`
+];
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -59,12 +79,12 @@ const structuredData = [
 ];
 ---
 
-<BaseLayout title={`${album.title} - GY!BE Album / gybe.org`} description={album.summary} image={album.image} type="music.album" structuredData={structuredData}>
+<BaseLayout title={pageTitle} description={album.summary} image={album.image} type="music.album" structuredData={structuredData}>
   <article>
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>
       <span>/</span>
-      <a href="/disco">discography</a>
+      <a href="/disco/">discography</a>
       <span>/</span>
       <span>{album.title}</span>
     </nav>
@@ -86,6 +106,9 @@ const structuredData = [
         <h1 class="page-title">{album.title}</h1>
         <p class="deck">{album.summary}</p>
 
+        <h2>archive context</h2>
+        {archiveContext.map((paragraph) => <p>{paragraph}</p>)}
+
         <h2>record data</h2>
         <table class="status-table">
           <tbody>
@@ -100,6 +123,11 @@ const structuredData = [
           {album.notes.map((note) => <li>{note}</li>)}
         </ul>
 
+        <h2>release/source note</h2>
+        <p>
+          Official label or artist pages are treated as source documentation. Streaming services are treated as listening paths and are listed separately when present.
+        </p>
+
         <h2>track list</h2>
         <ol>
           {album.tracks.map((track) => <li>{track}</li>)}
@@ -107,11 +135,22 @@ const structuredData = [
 
         <AlbumEmbed spotifyUrl={album.links?.spotify} appleMusicUrl={album.links?.appleMusic} />
 
-        {sourceLinks.length > 0 && (
+        {officialSourceLinks.length > 0 && (
           <>
-            <h2>source links</h2>
+            <h2>official sources</h2>
             <ul>
-              {sourceLinks.map((source) => (
+              {officialSourceLinks.map((source) => (
+                <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {streamingLinks.length > 0 && (
+          <>
+            <h2>streaming links</h2>
+            <ul>
+              {streamingLinks.map((source) => (
                 <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>
               ))}
             </ul>

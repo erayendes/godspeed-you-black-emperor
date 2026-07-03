@@ -29,7 +29,7 @@ const structuredData = {
     {albums.map((album) => (
       <div class="archive-row">
         <span class="meta">{album.year}</span>
-        <a class="archive-row__title" href={`/disco/${album.slug}`}>{album.title}</a>
+        <a class="archive-row__title" href={`/disco/${album.slug}/`}>{album.title}</a>
         <span class="archive-row__note">{album.kind}</span>
       </div>
     ))}

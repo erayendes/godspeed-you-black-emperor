@@ -11,10 +11,14 @@ export function getStaticPaths() {
 }
 
 const { member } = Astro.props;
-const description = `${member.summary} Includes role, years active, status, and related projects in the GY!BE archive.`;
+const description = member.summary;
 const related = crossingPaths.filter((item) =>
   member.projects.some((project) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()))
 );
+const projectContext = member.projects.length > 0
+  ? `Related projects listed here: ${member.projects.join(", ")}. These links place the member inside the wider Montreal and Constellation-adjacent network rather than treating the GY!BE lineup as an isolated roster.`
+  : "No related project is currently listed for this archive entry. The page still keeps role and years active visible so the member's place in the band history is clear.";
+const archiveContext = `${member.name} is listed as a ${member.status} Godspeed You! Black Emperor member with the role recorded as ${member.role}. The years field is ${member.years}. ${projectContext}`;
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -40,18 +44,21 @@ const structuredData = [
 ];
 ---
 
-<BaseLayout title={`${member.name} - Godspeed You! Black Emperor Member / gybe.org`} description={description} structuredData={structuredData}>
+<BaseLayout title={`${member.name} | GY!BE Member`} description={description} structuredData={structuredData}>
   <article class="content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">home</a>
       <span>/</span>
-      <a href="/members">members</a>
+      <a href="/members/">members</a>
       <span>/</span>
       <span>{member.name}</span>
     </nav>
     <p class="meta">{member.status} / {member.years}</p>
     <h1 class="page-title">{member.name}</h1>
     <p class="deck">{member.summary}</p>
+
+    <h2>archive context</h2>
+    <p>{archiveContext}</p>
 
     {member.bio && (
       <>
@@ -75,7 +82,7 @@ const structuredData = [
         <ul>
           {member.projects.map((project) => {
             const match = related.find((item) => item.title.toLowerCase().includes(project.toLowerCase().replace(/^thee /, "")) || project.toLowerCase().includes(item.title.toLowerCase()));
-            return <li>{match ? <a href={`/crossing-paths/${match.slug}`}>{project}</a> : project}</li>;
+            return <li>{match ? <a href={`/crossing-paths/${match.slug}/`}>{project}</a> : project}</li>;
           })}
         </ul>
       </>
