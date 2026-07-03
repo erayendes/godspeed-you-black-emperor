@@ -14,7 +14,7 @@ const currentMembers = members.filter((member) => member.status === "current");
     <h1 class="page-title hero-title">godspeed you! black emperor</h1>
     <div class="hero-copy">
       <p class="deck">
-        An unofficial map of the records, live dates, members, side projects, and Montreal scene connections around Godspeed You! Black Emperor.
+        A source-minded fan archive for Godspeed You! Black Emperor: records, live dates, members, side projects, and the Montreal paths around them.
       </p>
       <div class="link-list" aria-label="Primary sections">
         <a href="/disco">discography</a>
@@ -40,7 +40,7 @@ const currentMembers = members.filter((member) => member.status === "current");
       <p class="meta">live source / last checked {shows.lastChecked}</p>
       <h2 class="section-title"><a href="/shows">current show list</a></h2>
       <p>
-        Dates are copied from <a href={shows.sourceUrl}>{shows.source}</a> and reviewed manually before publishing.
+        Dates are copied from <a href={shows.sourceUrl}>{shows.source}</a>, then reviewed here before publishing.
       </p>
       <div class="archive-list compact-list" aria-label="Current shows">
         {shows.dates.map((show) => (
@@ -60,12 +60,12 @@ const currentMembers = members.filter((member) => member.status === "current");
       <div class="archive-row">
         <span class="meta">{albums.length} entries</span>
         <a class="archive-row__title" href="/disco">discography</a>
-        <span class="archive-row__note">album pages, covers, official links, streaming players</span>
+        <span class="archive-row__note">records, track lists, notes, official links</span>
       </div>
       <div class="archive-row">
         <span class="meta">{currentMembers.length} current</span>
         <a class="archive-row__title" href="/members">members</a>
-        <span class="archive-row__note">current and former lineups</span>
+        <span class="archive-row__note">current and former members, including projectionists</span>
       </div>
       <div class="archive-row">
         <span class="meta">{crossingPaths.length} nodes</span>

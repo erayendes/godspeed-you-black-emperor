@@ -118,7 +118,7 @@ export const crossingPaths = [
   {
     slug: "hangedup",
     title: "Hangedup",
-    relation: "Norsola Johnson / Constellation network",
+    relation: "Constellation / Montreal experimental network",
     summary: "A viola-and-percussion duo tied to Constellation's heavier chamber-experimental side.",
     body: [
       "Hangedup is a Montreal experimental duo formed by violist Genevieve Heistek and percussionist Eric Craven. It connects to this archive through the same Constellation ecosystem and the broader string/percussion language around GY!BE's early scene.",
@@ -164,11 +164,11 @@ export const crossingPaths = [
   {
     slug: "lhasa-de-sela",
     title: "Lhasa de Sela",
-    relation: "Montreal scene / GY!BE collaborators",
-    summary: "A Montreal-based songwriter whose recordings and live work crossed through the same collective network.",
+    relation: "Montreal scene",
+    summary: "A Montreal-based songwriter whose work crossed the same independent music map.",
     body: [
       "Lhasa de Sela was a Mexican-American singer-songwriter based in Montreal for much of her career. Her music drew from Mexican folk, chanson, jazz, and other traditions, carried by a voice that was direct, intimate, and unmistakable.",
-      "She is a crossing path rather than a side project: members of the Montreal experimental community, including musicians associated with GY!BE and Silver Mt. Zion, intersected with her live and recording world.",
+      "She is a crossing path rather than a side project: her work sits beside the same Montreal independent community that shaped many Constellation-era collaborations.",
       "Her albums La Llorona, The Living Road, and Lhasa sit outside post-rock, but they belong in this map because they show how porous the Montreal independent scene was across language, folk forms, and experimental practice."
     ],
     discography: ["La Llorona (1997)", "The Living Road (2003)", "Lhasa (2009)"],
@@ -252,8 +252,7 @@ export const crossingPaths = [
     ],
     discography: ["North Star Deserter (2007)", "At the Cut (2009)", "Skitter on Take-Off (2009)"],
     links: [
-      { label: "Constellation", url: "https://cstrecords.com/pages/artist/vic-chesnutt" },
-      { label: "Website", url: "https://vicchesnutt.com/" }
+      { label: "Constellation", url: "https://cstrecords.com/pages/artist/vic-chesnutt" }
     ]
   },
   {
