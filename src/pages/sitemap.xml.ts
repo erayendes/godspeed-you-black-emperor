@@ -5,6 +5,8 @@ import { shows } from "../data/shows";
 
 const site = "https://gybe.org";
 
+export const prerender = true;
+
 type SitemapPage = {
   path: string;
   priority: string;
