@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="contact / gybe.org" description="Contact gybe.org for corrections, source notes, and removal requests.">
+  <article class="content">
+    <h1 class="page-title">contact</h1>
+    <p class="deck">
+      Send corrections, source notes, missing links, live-date updates, or removal requests for the fan archive.
+    </p>
+
+    <section class="contact-embed" aria-label="Contact form">
+      <iframe
+        data-tally-src="https://tally.so/embed/yPkZGW?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&formEventsForwarding=1"
+        loading="lazy"
+        width="100%"
+        height="313"
+        style="border: 0;"
+        title="gybe.org contact form"
+      ></iframe>
+    </section>
+  </article>
+
+  <script is:inline async src="https://tally.so/widgets/embed.js"></script>
+</BaseLayout>
