@@ -7,12 +7,24 @@ const structuredData = shows.dates.map((show) => ({
   "@type": "MusicEvent",
   name: `Godspeed You! Black Emperor - ${show.city}`,
   startDate: show.date,
+  endDate: show.date,
+  description: `Godspeed You! Black Emperor live at ${show.venue} in ${show.city}, ${show.country}.`,
+  image: ["https://gybe.org/images/site/live-stage.jpg"],
   url: show.ticketUrl,
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   performer: {
     "@type": "MusicGroup",
     name: "Godspeed You! Black Emperor",
+  },
+  offers: {
+    "@type": "Offer",
+    url: show.ticketUrl,
+  },
+  organizer: {
+    "@type": "Organization",
+    name: show.organizer,
+    url: show.organizerUrl,
   },
   location: {
     "@type": "Place",

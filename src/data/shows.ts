@@ -10,6 +10,8 @@ export const shows = {
       city: "Buenos Aires",
       country: "Argentina",
       venue: "C Art Media",
+      organizer: "C Art Media",
+      organizerUrl: "https://www.passline.com/venue/c-art-media",
       ticketUrl: "https://www.passline.com/eventos/godspeed-you-black-emperor-c-art-media"
     },
     {
@@ -18,6 +20,8 @@ export const shows = {
       city: "Sao Paulo",
       country: "Brazil",
       venue: "Audio",
+      organizer: "Balaclava",
+      organizerUrl: "https://ingresse.com/godspeed-sp/",
       ticketUrl: "https://ingresse.com/godspeed-sp"
     },
     {
@@ -26,6 +30,8 @@ export const shows = {
       city: "Santiago",
       country: "Chile",
       venue: "Fauna Primavera Festival",
+      organizer: "Fauna Producciones",
+      organizerUrl: "https://www.puntoticket.com/faunaprimavera",
       ticketUrl: "https://www.puntoticket.com/faunaprimavera"
     }
   ]
